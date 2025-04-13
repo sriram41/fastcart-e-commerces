@@ -14,7 +14,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: 'https://sriram-khandavilli-fastcart-e-commerce.vercel.app/login', // Your frontend URL
+  origin: ['http://localhost:3000', 'https://sriram-khandavilli-fastcart-e-commerce.vercel.app'], // Your frontend URL
   credentials: true
 }));
 app.use(express.json());
