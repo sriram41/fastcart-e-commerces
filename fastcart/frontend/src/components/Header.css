@@ -1,0 +1,353 @@
+/* Add these styles to your existing Header.css */
+@media (min-width: 767px) and (max-width: 991px) {
+    .logo-1212 {
+        width: 14% !important;
+        margin-right: 37px;
+    }
+
+    .search-bar {
+        display: none !important;
+    }
+}
+
+/* Header.css */
+
+/* Base Styles */
+
+.logo-1212 {
+    width: 11%;
+}
+
+
+.header-721 {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+
+
+.header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header {
+    background-color: #050A1E;
+   
+    height: 64px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  /* Logo Styles */
+  .logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  
+  /* Search Bar Styles */
+  .search-container {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 24px;
+    position: relative;
+  }
+  
+
+  .search-input::placeholder {
+    color: #ffffffd4; /* Medium gray color */
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1; /* Ensure full visibility */
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #050A1E;
+    font-size: 14px;
+    outline: none;
+    background-color: #050A1E;
+    padding-top: 17px;
+  }
+  
+  .search-input:focus {
+   
+    border-bottom:1px solid #bdbdbd;
+  }
+  
+  .search-button {
+    position: absolute;
+    left: -12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffffd4;
+    top: 14px;
+  }
+  
+  .search-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Right Section Styles */
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* User Profile Styles */
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #2EC988;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: #fff;
+  }
+  
+  .user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffffd4;
+  }
+  
+  /* Icons (if added later) */
+
+  .icon-button svg {
+    font-size: 19px;
+    padding-top: 8px;
+    color: #ffffffd4;
+}
+
+
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffffd4;
+    padding: 8px;
+    position: relative;
+  }
+  
+  .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3759AB;
+    color: white;
+    border-radius: 87%;
+    width: 4px;
+    height: 16px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Clear Button (for search) */
+  .clear-button {
+    position: absolute;
+    right: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9e9e9e;
+    padding: 8px;
+    
+  }
+  
+  .clear-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+.arrow-1443 {
+    margin-left: 10px;
+    position: relative;
+    top: 4px;
+    font-size: 15px;
+}
+
+
+
+
+
+/* .search-container {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+    min-width: 300px;
+  }
+  
+  .clear-button {
+    position: absolute;
+    right: 45px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #64748b;
+    transition: color 0.2s;
+  }
+  
+  .clear-button:hover {
+    color: #ef4444;
+  }
+  
+  .clear-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .category-section {
+    padding: 12px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .category-section:last-child {
+    border-bottom: none;
+  }
+  
+  .category-title {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  .items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .item:hover {
+    background-color: #f8fafc;
+    color: #4f46e5;
+  } */
+
+/* .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .logout-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .logout-btn:hover {
+    background-color: #4338ca;
+  } */
+
+/* .header {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .logout-btn {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #1d4ed8;
+  } */

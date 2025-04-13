@@ -1,0 +1,52 @@
+.inbox-container {
+    padding: 24px;
+    background-color: #f8fafc;
+  }
+  
+  .inbox-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .refresh-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+  }
+  
+  .messages-list {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .message {
+    display: grid;
+    grid-template-columns: 40px 2fr 3fr 1fr;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+  }
+  
+  .message.unread {
+    background-color: #f8fafc;
+    font-weight: 500;
+  }
+  
+  .message-from {
+    color: #1e293b;
+  }
+  
+  .message-subject {
+    color: #475569;
+  }
+  
+  .message-date {
+    color: #64748b;
+    font-size: 14px;
+    text-align: right;
+  }

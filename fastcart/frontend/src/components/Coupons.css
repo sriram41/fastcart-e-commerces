@@ -1,0 +1,25 @@
+.coupons-container {
+    padding: 24px;
+    background-color: #f8fafc;
+  }
+  
+  .coupon-code {
+    font-family: monospace;
+    font-weight: 600;
+    color: #4f46e5;
+  }
+  
+  .coupons-table {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .coupon-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+  }
