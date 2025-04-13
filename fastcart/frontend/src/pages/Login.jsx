@@ -1,174 +1,5 @@
 // src/pages/Login.jsx
 
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCredentials } from '../store/authSlice';
-import './styles.css';
-
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { userInfo } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/dashboard');
-    }
-  }, [userInfo, navigate]);
-
-  const validateForm = () => {
-    if (!email.trim()) {
-      setError('Email is required');
-      return false;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError('Please enter a valid email');
-      return false;
-    }
-    if (!password) {
-      setError('Password is required');
-      return false;
-    }
-    return true;
-  };
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-    
-    setLoading(true);
-    setError('');
-    
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        credentials: 'include', // Required for cookies
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        dispatch(setCredentials(data));
-        navigate('/dashboard');
-      } else {
-        setError(data.message || 'Login failed. Please check your credentials.');
-      }
-    } catch (err) {
-      console.error('Login error:', err);
-      setError('Failed to connect to server. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="auth-container">
-      <div className="auth-header">
-        <h2 className="auth-title">fastcart sign in to your account</h2>
-      </div>
-      {error && <div className="error-message">{error}</div>}
-      <div className="auth-card">
-        <div className="auth-card-inner">
-          <form className="auth-form" onSubmit={submitHandler}>
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Email address
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-input"
-                  disabled={loading}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="form-input"
-                  disabled={loading}
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className={`submit-button ${loading ? 'loading' : ''}`}
-                disabled={loading}
-              >
-                {loading ? (
-                  <>
-                    <span className="spinner"></span>
-                    Signing in...
-                  </>
-                ) : (
-                  'Sign in'
-                )}
-              </button>
-            </div>
-          </form>
-
-          <div className="divider">
-            <div className="divider-line">
-              <div className="divider-line-inner"></div>
-            </div>
-            <div className="divider-text">
-              <span>Or</span>
-            </div>
-          </div>
-
-          <div className="auth-link-container">
-            <p className="auth-link-text">
-              Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="auth-link"
-              >
-                Register here
-              </Link>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Login;
-
-
-
-
-
 // import React, { useState, useEffect } from 'react';
 // import { Link, useNavigate } from 'react-router-dom';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -179,6 +10,7 @@ export default Login;
 //   const [email, setEmail] = useState('');
 //   const [password, setPassword] = useState('');
 //   const [error, setError] = useState('');
+//   const [loading, setLoading] = useState(false);
 
 //   const dispatch = useDispatch();
 //   const navigate = useNavigate();
@@ -190,11 +22,34 @@ export default Login;
 //     }
 //   }, [userInfo, navigate]);
 
+//   const validateForm = () => {
+//     if (!email.trim()) {
+//       setError('Email is required');
+//       return false;
+//     }
+//     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//       setError('Please enter a valid email');
+//       return false;
+//     }
+//     if (!password) {
+//       setError('Password is required');
+//       return false;
+//     }
+//     return true;
+//   };
+
 //   const submitHandler = async (e) => {
 //     e.preventDefault();
+    
+//     if (!validateForm()) return;
+    
+//     setLoading(true);
+//     setError('');
+    
 //     try {
-//       const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/auth/login', {
+//       const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
 //         method: 'POST',
+//         credentials: 'include', // Required for cookies
 //         headers: {
 //           'Content-Type': 'application/json',
 //         },
@@ -207,10 +62,13 @@ export default Login;
 //         dispatch(setCredentials(data));
 //         navigate('/dashboard');
 //       } else {
-//         setError(data.message || 'Login failed');
+//         setError(data.message || 'Login failed. Please check your credentials.');
 //       }
 //     } catch (err) {
-//       setError('An error occurred. Please try again.');
+//       console.error('Login error:', err);
+//       setError('Failed to connect to server. Please try again later.');
+//     } finally {
+//       setLoading(false);
 //     }
 //   };
 
@@ -237,6 +95,7 @@ export default Login;
 //                   value={email}
 //                   onChange={(e) => setEmail(e.target.value)}
 //                   className="form-input"
+//                   disabled={loading}
 //                 />
 //               </div>
 //             </div>
@@ -255,6 +114,7 @@ export default Login;
 //                   value={password}
 //                   onChange={(e) => setPassword(e.target.value)}
 //                   className="form-input"
+//                   disabled={loading}
 //                 />
 //               </div>
 //             </div>
@@ -262,9 +122,17 @@ export default Login;
 //             <div>
 //               <button
 //                 type="submit"
-//                 className="submit-button"
+//                 className={`submit-button ${loading ? 'loading' : ''}`}
+//                 disabled={loading}
 //               >
-//                 Sign in
+//                 {loading ? (
+//                   <>
+//                     <span className="spinner"></span>
+//                     Signing in...
+//                   </>
+//                 ) : (
+//                   'Sign in'
+//                 )}
 //               </button>
 //             </div>
 //           </form>
@@ -296,6 +164,138 @@ export default Login;
 // };
 
 // export default Login;
+
+
+
+
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCredentials } from '../store/authSlice';
+import './styles.css';
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard');
+    }
+  }, [userInfo, navigate]);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        dispatch(setCredentials(data));
+        navigate('/dashboard');
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.');
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-header">
+        <h2 className="auth-title">fastcart sign in to your account</h2>
+      </div>
+      {error && <div className="error-message">{error}</div>}
+      <div className="auth-card">
+        <div className="auth-card-inner">
+          <form className="auth-form" onSubmit={submitHandler}>
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <div className="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-input"
+                />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <div className="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-input"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="submit-button"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+
+          <div className="divider">
+            <div className="divider-line">
+              <div className="divider-line-inner"></div>
+            </div>
+            <div className="divider-text">
+              <span>Or</span>
+            </div>
+          </div>
+
+          <div className="auth-link-container">
+            <p className="auth-link-text">
+              Don't have an account?{' '}
+              <Link
+                to="/register"
+                className="auth-link"
+              >
+                Register here
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
 
 
 // import React, { useState, useEffect } from 'react';
