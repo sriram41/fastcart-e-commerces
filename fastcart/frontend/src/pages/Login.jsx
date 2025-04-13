@@ -25,7 +25,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://fastcart-e-commerces.onrender.com/api/auth/login', {
+      const response = await fetch('${process.env.REACT_APP_API_BASE_URL}/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
